@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Global storage error banner -->
+  <div id="error-banner" class="error-banner hidden" role="alert" aria-live="assertive">
+    <span id="error-banner-message">Your changes could not be saved. Storage may be full.</span>
+    <button id="error-banner-close" class="banner-close" aria-label="Dismiss error">&#x2715;</button>
+  </div>
+
+  <!-- Dark mode toggle (fixed top-right) -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark / light mode">
+    <span class="theme-icon">🌙</span>
+  </button>
+
+  <div class="container">
+
+    <!-- Greeting Widget -->
+    <section id="greeting-widget" class="widget" aria-label="Greeting">
+      <h2 id="greeting-message" class="greeting-message">Hello</h2>
+      <p id="greeting-time" class="greeting-time" aria-live="polite" aria-label="Current time">--:--:--</p>
+      <p id="greeting-date" class="greeting-date" aria-label="Current date">--</p>
+
+      <!-- Challenge: Custom name in greeting -->
+      <div class="name-form">
+        <label for="username-input" class="name-label">Your name:</label>
+        <div class="name-input-row">
+          <input
+            type="text"
+            id="username-input"
+            class="name-input"
+            placeholder="Enter your name…"
+            maxlength="50"
+            aria-label="Enter your name for greeting"
+          />
+          <button id="username-save" class="btn btn-light-sm" aria-label="Save name">Save</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Focus Timer -->
+    <section id="focus-timer" class="widget" aria-label="Focus Timer">
+      <h2 class="widget-title">Focus Timer</h2>
+
+      <div id="timer-alert" class="timer-alert hidden" role="alert" aria-live="assertive">
+        Session complete! Take a break.
+        <button class="banner-close" id="timer-alert-close" aria-label="Dismiss timer alert">&#x2715;</button>
+      </div>
+
+      <p id="timer-display" class="timer-display" aria-live="polite" aria-label="Remaining time">25:00</p>
+
+      <!-- Challenge: Change Pomodoro time -->
+      <div class="timer-duration-form">
+        <label for="timer-duration-input" class="timer-duration-label">Duration (minutes):</label>
+        <div class="timer-duration-row">
+          <input
+            type="number"
+            id="timer-duration-input"
+            class="text-input timer-duration-input"
+            value="25"
+            min="1"
+            max="120"
+            aria-label="Pomodoro duration in minutes"
+          />
+          <button id="timer-duration-set" class="btn btn-secondary" aria-label="Set timer duration">Set</button>
+        </div>
+        <p id="timer-duration-error" class="input-error hidden" role="alert" aria-live="polite"></p>
+      </div>
+
+      <div class="timer-controls">
+        <button id="timer-start" class="btn btn-primary" aria-label="Start timer">Start</button>
+        <button id="timer-stop" class="btn btn-secondary" aria-label="Stop timer" disabled>Stop</button>
+        <button id="timer-reset" class="btn btn-secondary" aria-label="Reset timer">Reset</button>
+      </div>
+    </section>
+
+    <!-- To-Do List -->
+    <section id="todo-list" class="widget" aria-label="To-Do List">
+      <h2 class="widget-title">To-Do List</h2>
+
+      <div class="todo-add-form">
+        <label for="todo-input" class="sr-only">New task</label>
+        <input
+          type="text"
+          id="todo-input"
+          class="text-input"
+          placeholder="Add a new task…"
+          maxlength="500"
+          aria-describedby="todo-input-error"
+          aria-label="New task text"
+        />
+        <button id="todo-add" class="btn btn-primary" aria-label="Add task">Add</button>
+      </div>
+      <p id="todo-input-error" class="input-error hidden" role="alert" aria-live="polite"></p>
+
+      <!-- Challenge: Sort tasks -->
+      <div class="todo-sort-bar">
+        <label for="todo-sort" class="sort-label">Sort:</label>
+        <select id="todo-sort" class="sort-select" aria-label="Sort tasks">
+          <option value="default">Default (added order)</option>
+          <option value="az">Name A → Z</option>
+          <option value="za">Name Z → A</option>
+          <option value="active-first">Active first</option>
+          <option value="completed-first">Completed first</option>
+        </select>
+      </div>
+
+      <ul id="todo-items" class="todo-items" aria-label="Task list" aria-live="polite"></ul>
+      <p id="todo-placeholder" class="placeholder-text">No tasks yet. Add one above!</p>
+    </section>
+
+    <!-- Quick Links -->
+    <section id="quick-links" class="widget" aria-label="Quick Links">
+      <h2 class="widget-title">Quick Links</h2>
+
+      <div class="link-add-form">
+        <label for="link-label-input" class="sr-only">Link label</label>
+        <input
+          type="text"
+          id="link-label-input"
+          class="text-input"
+          placeholder="Label (e.g. GitHub)"
+          maxlength="100"
+          aria-describedby="link-error"
+          aria-label="Link label"
+        />
+        <label for="link-url-input" class="sr-only">Link URL</label>
+        <input
+          type="url"
+          id="link-url-input"
+          class="text-input"
+          placeholder="URL (e.g. https://github.com)"
+          maxlength="2048"
+          aria-describedby="link-error"
+          aria-label="Link URL"
+        />
+        <button id="link-add" class="btn btn-primary" aria-label="Add link">Add</button>
+      </div>
+      <p id="link-error" class="input-error hidden" role="alert" aria-live="polite"></p>
+
+      <div id="link-items" class="link-items" aria-label="Quick links" aria-live="polite"></div>
+      <p id="link-placeholder" class="placeholder-text">No quick links yet. Add one above!</p>
+    </section>
+
+  </div><!-- /.container -->
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
